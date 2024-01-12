@@ -1,40 +1,10 @@
-import streamlit as st
-import pandas as pd
-import numpy as np
-import requests
 import time
-
-from streamlit_utils.callbacks import on_go_to_add_money, on_make_predict, \
-                       on_return_to_predict, on_add_money, \
-                       on_login, on_register
-from streamlit_utils.screens import login_screen, add_money_screen, \
-                                    prediction_screen
-
-# SEQN,age_group,RIAGENDR,PAQ605,BMXBMI,LBXGLU,DIQ010,LBXGLT,LBXIN
-# 73564.0,Adult,2.0,2.0,35.7,110.0,2.0,150.0,14.91
+import streamlit as st
 
 
-
-
-
-################################################################################################################!
-
-def main():
-    states = {
-        'auth': login_screen,
-        'prediction': prediction_screen,
-        'money': add_money_screen
-    }
-
-    if 'jwt' not in st.session_state and 'current_window' not in st.session_state:
-        st.session_state['jwt'] = ''
-        st.session_state['current_window'] = 'auth'
-
-    # st.session_state
-
-    states[st.session_state['current_window']]()
-
-
+        
+        
+        
 def login_screen():
     with st.form(key="auth_form"):
         st.text_input('Login', value='', key='login_input')
@@ -92,7 +62,3 @@ def prediction_screen():
         st.form_submit_button('PREDICT', type='primary',
                               on_click=on_make_predict)
     st.button('Add money', on_click=on_go_to_add_money)
-
-
-if __name__ == '__main__':
-    main()
